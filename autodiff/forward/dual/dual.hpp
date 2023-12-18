@@ -699,7 +699,7 @@ auto seed(Dual<T, G>& dual, U&& seedval)
 /// This alias template allows only dual numbers to have their original type.
 /// All other types become plain, without reference and const attributes.
 template<typename T>
-using PreventExprRef = ConditionalType<isDual<T>, T, PlainType<T>>;
+using PreventExprRef = PlainType<T>;
 
 //-----------------------------------------------------------------------------
 // NEGATIVE EXPRESSION GENERATOR FUNCTION
