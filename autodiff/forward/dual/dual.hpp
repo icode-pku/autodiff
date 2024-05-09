@@ -67,7 +67,11 @@ using std::tan;
 using std::cosh;
 using std::sinh;
 using std::tanh;
+
+#ifdef _GLIBCXX_USE_C99_MATH_TR1
 using std::erf;
+#endif
+
 using std::hypot;
 
 //=====================================================================================================================
