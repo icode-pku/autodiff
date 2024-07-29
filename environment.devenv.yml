@@ -1,13 +1,12 @@
 name: autodiff
 
-{% set python_version = os.environ.get("PYTHON_VERSION", "3.10") %}
-
 channels:
   - conda-forge
+  - nvidia
 
 dependencies:
   - catch2>=3
-  - ccache  # [unix]
+  - ccache
   - clangxx_osx-64  # [osx]
   - cmake
   - doxygen=1.9.1  # [linux]
@@ -26,6 +25,6 @@ dependencies:
   - pybind11
   - pybind11-abi
   - pybind11-stubgen
-  - python={{ python_version }}
+  - python=3.10
   - shellcheck
-  - vs2019_win-64  # [win]
+  - cuda-toolkit  # [linux]

@@ -10,9 +10,18 @@ target_compile_features(autodiff INTERFACE cxx_std_17)
 # Add the include paths to the Reaktoro target
 target_include_directories(autodiff
     INTERFACE
-        $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
+
+if(CMAKE_CUDA_COMPILER)
+    # target_compile_options(autodiff INTERFACE $<$<COMPILE_LANGUAGE:CUDA>:--expt-relaxed-constexpr --extended-lambda>)
+    if(CMAKE_CUDA_COMPILER_ID STREQUAL "NVIDIA")
+        target_compile_options(autodiff INTERFACE
+            $<$<COMPILE_LANGUAGE:CUDA>:--expt-relaxed-constexpr --extended-lambda>
+        )
+    endif()
+endif()
 
 # Install autodiff interface library
 install(TARGETS autodiff EXPORT autodiffTargets)
